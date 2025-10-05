@@ -1,60 +1,59 @@
-📌 Task Summary
+# 🐍 Python-CLI-Persistence-Engine
 
-- This repository contains a Command-Line Interface (CLI) To-Do List Application built using Python.
-- The project was part of my internship tasks and helped me understand persistent data storage, user interaction in CLI, and modular program design.
+[![Project Status](https://img.shields.io/badge/Status-Complete%20%7C%20Refactored-28a745?style=for-the-badge)](./todo.py)
+[![Language](https://img.shields.io/badge/Language-Python-3776AB?style=for-the-badge&logo=python)](./todo.py)
+[![Focus](https://img.shields.io/badge/Focus-CLI%20Design%20%7C%20Data%20Integrity-007bff?style=for-the-badge)]()
 
-🚀 My Development Process
+---
 
-1. Project Planning & Breakdown
-- Defined the objective: build a simple task manager with add, view, and remove options.
-- Planned persistence so tasks remain saved even after closing the program.
-- Chose a list data structure for managing tasks in memory and a text file (tasks.txt) for storage.
+## 💡 Project Overview: Robust Utility Development
 
-2. Core Implementation
-- Designed an interactive CLI menu using a while loop.
-- Implemented modular functions for:
-- Viewing tasks
-- Adding tasks
-- Removing tasks
-- Saving/loading tasks from a file
+This repository serves as a demonstration of foundational backend engineering principles applied to a **Command Line Interface (CLI)** environment. The core focus is not merely task management, but the effective implementation of a **Persistence Engine** to maintain data state across multiple user sessions using fundamental Python capabilities.
 
-3. File Handling & Persistence
-- Used Python’s built-in open() method for reading/writing tasks.
-- Stored tasks line by line in tasks.txt.
-- Ensured tasks reload automatically each time the program starts.
+The included utility, a persistent To-Do list, is the functional output of this persistence engine design.
 
-4. Error Handling & User Experience
-- Validated user input for correct menu selection.
-- Added checks for invalid task numbers when removing tasks.
-- Handled FileNotFoundError gracefully if tasks.txt doesn’t exist yet.
+## 🛠️ Engineering Disciplines Demonstrated
 
-5. Collaboration & Deployment with GitHub
-- Pushed the final code (todo.py) to GitHub.
-- Documented the process and features clearly in this README file.
+This project showcases expertise in several crucial software development areas:
 
-📖 Application Description
+### 1. **Data Persistence and Integrity**
+* **Decoupled Storage:** Implemented file I/O logic (`load_tasks`/`save_tasks`) completely separate from the application logic (CRUD operations), ensuring that the storage mechanism can be easily swapped (e.g., migrating from `.txt` to `SQLite`) without affecting the core UI or task logic.
+* **Graceful Handling:** Included robust exception handling for `FileNotFoundError`, ensuring a clean boot process and initialization of the data store (`tasks.txt`) if it does not exist.
 
-- This is a persistent, user-friendly CLI To-Do List Manager written in Python.
-- It demonstrates fundamental programming concepts such as lists, loops, conditional logic, modular code structure, and file handling.
-- The app helps users manage their tasks effectively from the terminal, ensuring that tasks are saved and accessible across multiple sessions.
+### 2. **Modular Architecture**
+* **Separation of Concerns (SoC):** The application is broken down into small, single-responsibility functions (`add_task`, `remove_task`, `view_tasks`), making the codebase highly testable, readable, and maintainable.
+* **Main Control Flow:** Utilizes the standard `if __name__ == "__main__":` entry point and a clear `main()` function with a persistent `while True` loop, reflecting a professional application structure.
 
-✨ Key Features
+### 3. **User Experience & Defensive Programming**
+* **Input Validation:** Implemented explicit validation using `try...except ValueError` to handle non-integer input for menu choices and task numbers, preventing runtime crashes.
+* **Clear Feedback Loop:** Provides instantaneous success/failure messages to the user for every operation (add, remove, invalid input).
 
-- Simple & Interactive CLI – Intuitive text-based menu system.
-- Task Management – Add, view, and remove tasks easily.
-- Persistent Storage – Tasks are saved to tasks.txt and reloaded automatically.
-- Error Handling – Prevents crashes from invalid inputs.
-- User-Friendly – Clear prompts and instructions for smooth usage.
+---
 
-⚙️ Technologies Used
+## ⚙️ Application Structure
 
-- Language: Python
-- Tools: VS Code / Terminal
+The entire application is contained within `todo.py` and manages a single data file: `tasks.txt`.
 
-🎯 Outcome
+### Key Code Components:
 
-- This project resulted in a persistent CLI-based To-Do App, showcasing my ability to:
-- Build interactive Python applications
-- Work with file handling for data persistence
-- Apply modular coding practices
-- Document and share code effectively using GitHub
+| Function/Variable | Purpose | Engineering Highlight |
+| :--- | :--- | :--- |
+| `TASK_FILE` | Global constant for the data store name. | Uses constants for configuration, improving portability. |
+| `load_tasks()` | Reads data from file into memory (`list`). | Manages file-not-found error gracefully. |
+| `save_tasks()` | Writes data from memory back to file. | The core persistence writer. |
+| `remove_task()` | Handles task deletion by index. | Includes logic for validating input against list boundaries. |
+
+## 🚀 Quick Setup
+
+This application requires only a standard Python environment.
+
+1.  **Run the script:**
+    ```bash
+    python todo.py
+    ```
+2.  **Interact with the Menu:**
+    Enter `1` to view, `2` to add, `3` to remove, and `4` to exit. Tasks will be saved in a new `tasks.txt` file in the same directory.
+
+## 🎯 Outcome
+
+This exercise successfully delivered a durable CLI utility, validating my ability to design and implement simple yet effective **data persistence and integrity layers** within a Python application. It showcases a commitment to **clean, modular, and defensible code** capable of serving as a boilerplate for future command-line tools.
